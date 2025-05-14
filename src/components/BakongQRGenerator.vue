@@ -82,6 +82,10 @@ export default {
                 // Format amount properly - remove decimal places for KHR
                 const formattedAmount = Math.round(parseFloat(this.amount));
 
+                // Define merchant name and location as variables so they can be referenced later
+                const merchantName = 'Borenn Morm';
+                const location = 'Phnom Penh';
+
                 const optionalData = {
                     currency: khqrData.currency.khr, // Use the proper currency code from the library
                     amount: formattedAmount, // Use rounded amount for KHR (no decimal places)
@@ -93,13 +97,9 @@ export default {
                     merchantCategoryCode: "5999" // Standard merchant category code
                 };
 
-                // Create individual info object with proper merchant information
-                const merchantName = "Borenn Morm"; // Must be consistent with Bakong registration
-                const location = "Phnom Penh"; // Keep location shorter
 
                 const individualInfo = new IndividualInfo(
                     this.accountId, // Bakong account ID
-                    khqrData.currency.khr, // Currency code
                     merchantName, // Merchant name
                     location, // Location
                     optionalData
@@ -179,6 +179,7 @@ export default {
             this.debugInfo = null;
             this.$emit('reset');
         },
+
 
         // Helper method to parse QR content for debugging
         parseQRContent(qrString) {
